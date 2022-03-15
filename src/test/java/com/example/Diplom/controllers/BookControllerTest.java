@@ -89,6 +89,7 @@ public class BookControllerTest {
         List<Book> books = bookRepo.findAll();
 
         assertEquals(0, books.size());
+        resultActions.andExpect(status().isOk());
     }
 }
 
