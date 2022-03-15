@@ -64,8 +64,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
                 .content(objectMapper.writeValueAsString(newCustomer));
         ResultActions resultActions = this.mockMvc.perform(requestBuilder);
         String result = resultActions.andReturn().getResponse().getContentAsString();
-        CustomerResponse testCustomer = objectMapper.readValue(result, new TypeReference<>() {
-        });
         List<Customer> customers1 = customerRepo.findAll();
 
         assertNotNull(result);
@@ -76,8 +74,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
     void testMustFindCustomerById() throws Exception{
         Customer customer = addCustomer("кори", "гроу", "coreygrow@gmail.com");
         ResultActions resultActions = this.mockMvc.perform(get("/customer/" + customer.getId()));
-        String result = resultActions.andReturn().getResponse().getContentAsString();
-        BookResponse bookResponse = objectMapper.readValue(result, new TypeReference<>() {});
 
         resultActions.andExpect(status().isOk());
     }
@@ -86,7 +82,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
     void testMustDeleteCustomerById() throws Exception{
         Customer customer = addCustomer("кори", "гроу", "coreygrow@gmail.com");
         ResultActions resultActions = this.mockMvc.perform(delete("/customer/" + customer.getId()));
-        String result = resultActions.andReturn().getResponse().getContentAsString();
         List<Customer> customers = customerRepo.findAll();
 
         assertEquals(0,customers.size());

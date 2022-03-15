@@ -67,8 +67,6 @@ public class BookControllerTest {
                 .content(objectMapper.writeValueAsString(newBook));
         ResultActions resultActions = this.mockMvc.perform(requestBuilder);
         String result = resultActions.andReturn().getResponse().getContentAsString();
-        BookResponse testBook = objectMapper.readValue(result, new TypeReference<>() {
-        });
         List<Book> books1 = bookRepo.findAll();
 
         assertNotNull(result);
@@ -79,8 +77,6 @@ public class BookControllerTest {
     public void MustFindBookById() throws Exception{
         Book book = addBook("Анджей Сапковский", "последнее желание", 480, 1500f);
         ResultActions resultActions = this.mockMvc.perform(get("/book/" + book.getId()));
-        String result = resultActions.andReturn().getResponse().getContentAsString();
-        BookResponse bookResponse = objectMapper.readValue(result, new TypeReference<>() {});
 
         resultActions.andExpect(status().isOk());
 
@@ -90,7 +86,6 @@ public class BookControllerTest {
     public void MustDeleteBookById() throws Exception{
         Book book = addBook("Анджей Сапковский", "последнее желание", 480, 1500f);
         ResultActions resultActions = this.mockMvc.perform(delete("/book/" + book.getId()));
-        String result = resultActions.andReturn().getResponse().getContentAsString();
         List<Book> books = bookRepo.findAll();
 
         assertEquals(0, books.size());
