@@ -85,6 +85,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
         List<Customer> customers = customerRepo.findAll();
 
         assertEquals(0,customers.size());
+        resultActions.andExpect(status().isOk());
 
     }
 }
