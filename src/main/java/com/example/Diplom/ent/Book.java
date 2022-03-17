@@ -10,10 +10,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(schema = "public", name = "books")
 public class Book {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    // TODO: 17.03.2022 make author as separated entity
     @Column(nullable = false)
     private String authorName;
 

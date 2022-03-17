@@ -13,8 +13,7 @@ import javax.persistence.*;
 @Table(schema = "public", name = "customers")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String surname;
@@ -22,6 +21,7 @@ public class Customer {
     @Column(nullable = false, unique = true)
     private String email;
 
+    // TODO: 17.03.2022 what is that? remove
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Book book;

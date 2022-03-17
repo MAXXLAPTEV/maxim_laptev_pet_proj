@@ -4,9 +4,12 @@ import com.example.Diplom.dto.request.BookRequest;
 import com.example.Diplom.dto.response.BookResponse;
 import com.example.Diplom.ent.Book;
 import com.example.Diplom.repo.BookRepo;
+import com.example.Diplom.web.handler.ServiceException;
+import com.example.Diplom.web.handler.TypicalError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,7 +28,9 @@ public class BookService {
     }
 
     public BookResponse findByBookId(Long id) {
-        Book book = bookRepo.findById(id).get();
+        // TODO: 17.03.2022 use this approach in places like this
+        Book book = bookRepo.findById(id).orElseThrow(() ->
+                new ServiceException("No such book", TypicalError.NOT_FOUND));
         return objectMapper.convertValue(book, BookResponse.class);
     }
 
