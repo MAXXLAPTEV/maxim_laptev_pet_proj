@@ -21,8 +21,4 @@ public class Customer {
     @Column(nullable = false, unique = true)
     private String email;
 
-    // TODO: 17.03.2022 what is that? remove
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Book book;
 }

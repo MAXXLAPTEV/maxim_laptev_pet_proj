@@ -8,11 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class BookResponse {
+public class BookAuthorResponse {
     private Long id;
-    private String bookName;
-    private int pages;
-    private Float cost;
-    private int dateOfPrinting;
-
+    private String authorName;
+    private String authorSurname;
+    private int authorBirth;
 }

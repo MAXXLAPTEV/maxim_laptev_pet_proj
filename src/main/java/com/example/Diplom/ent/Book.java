@@ -17,9 +17,6 @@ public class Book {
 
     // TODO: 17.03.2022 make author as separated entity
     @Column(nullable = false)
-    private String authorName;
-
-    @Column(nullable = false)
     private String bookName;
 
     @Column(nullable = false)
@@ -28,8 +25,17 @@ public class Book {
     @Column(nullable = false)
     private Float cost;
 
+    @Column(nullable = false)
+    private int dateOfPrinting;
+
     @ManyToOne
     @JoinColumn(name = "busket_id")
     private Basket basket;
 
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "authot_id")
+    private BookAuthor bookAuthor;
+
 }
+
+

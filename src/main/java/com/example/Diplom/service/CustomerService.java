@@ -4,6 +4,8 @@ import com.example.Diplom.dto.request.CustomerRequest;
 import com.example.Diplom.dto.response.CustomerResponse;
 import com.example.Diplom.ent.Customer;
 import com.example.Diplom.repo.CustomerRepo;
+import com.example.Diplom.web.handler.ServiceException;
+import com.example.Diplom.web.handler.TypicalError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +27,8 @@ public class CustomerService {
     }
 
     public CustomerResponse findByCustomerId(Long id) {
-        Customer customer = customerRepo.findById(id).get();
+        Customer customer = customerRepo.findById(id).orElseThrow(() ->
+                new ServiceException("no such customer", TypicalError.NOT_FOUND));
         return objectMapper.convertValue(customer, CustomerResponse.class);
     }
 

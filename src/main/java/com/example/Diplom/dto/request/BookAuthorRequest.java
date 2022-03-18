@@ -8,9 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class BookRequest {
-    private String bookName;
-    private int pages;
-    private Float cost;
-    private int dateOfPrinting;
+public class BookAuthorRequest {
+    private String authorName;
+    private String authorSurname;
+    private int authorBirth;
 }
