@@ -1,5 +1,6 @@
 package com.example.Diplom.ent;
 
+import com.example.Diplom.dto.request.addbook.ApiBook;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +16,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    // TODO: 17.03.2022 make author as separated entity
+
     @Column(nullable = false)
     private String bookName;
 
@@ -28,14 +29,18 @@ public class Book {
     @Column(nullable = false)
     private int dateOfPrinting;
 
-    @ManyToOne
-    @JoinColumn(name = "busket_id")
-    private Basket basket;
-
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "authot_id")
+    @OneToOne
+    @JoinColumn(name = "author_id")
     private BookAuthor bookAuthor;
 
+
+    public Book(ApiBook book, BookAuthor bookAuthor) {
+        this.bookName = book.getBookName();
+        this.pages = book.getPages();
+        this.cost = book.getCost();
+        this.dateOfPrinting = book.getDateOfPrinting();
+        this.bookAuthor = bookAuthor;
+    }
 }
 
 

@@ -2,6 +2,7 @@ package com.example.Diplom.web;
 
 import com.example.Diplom.dto.request.BasketRequest;
 import com.example.Diplom.dto.response.BasketResponse;
+import com.example.Diplom.dto.response.CustomerResponse;
 import com.example.Diplom.service.BasketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class BasketController {
 
 
     @PostMapping("/addBook")
-    public ResponseEntity<BasketResponse> addBook(@RequestBody BasketRequest basketRequest){
+    public ResponseEntity<BasketResponse> addBookToBasket(@RequestBody BasketRequest basketRequest){
         BasketResponse basketResponse = basketService.addBook(basketRequest);
 
         return ResponseEntity.ok(basketResponse);

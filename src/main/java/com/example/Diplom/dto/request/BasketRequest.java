@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BasketRequest {
     private Long customerId;
-    private Long productId;
+    private Long bookId;
 
 }

@@ -1,4 +1,4 @@
-package com.example.Diplom.dto.request;
+package com.example.Diplom.dto.request.addbook;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class BookRequest {
-    private String bookName;
-    private int pages;
-    private Float cost;
-    private int dateOfPrinting;
+    private ApiBook book;
+    private ApiBookAuthor bookAuthor;
 }

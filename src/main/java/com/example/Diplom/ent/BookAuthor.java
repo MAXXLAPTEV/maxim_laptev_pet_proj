@@ -1,13 +1,11 @@
 package com.example.Diplom.ent;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.example.Diplom.dto.request.addbook.ApiBookAuthor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -29,8 +27,9 @@ public class BookAuthor {
     @Column(nullable = false)
     private int authorBirth;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_id")
-    private List<Book> bookList;
-    //private Book book;
+    public BookAuthor(ApiBookAuthor author) {
+        this.authorName = author.getAuthorName();
+        this.authorSurname = author.getAuthorSurname();
+        this.authorBirth = author.getAuthorBirth();
+    }
 }

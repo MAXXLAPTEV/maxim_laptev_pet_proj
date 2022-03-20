@@ -29,7 +29,7 @@ public class BasketService {
     }
 
     private Basket findBook(BasketRequest basketRequest) {
-        return basketRepo.getById(basketRequest.getProductId());
+        return basketRepo.getById(basketRequest.getBookId());
     }
 
     public BasketResponse deleteBasket(BasketRequest basketRequest){
