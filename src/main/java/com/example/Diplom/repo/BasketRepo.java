@@ -10,6 +10,4 @@ import java.util.Optional;
 public interface BasketRepo extends JpaRepository<Basket, Long> {
 
     Basket findByCustomerId(Long customerId);
-    Optional<Basket> getByCustomerId(Long customerId);
-
-}
+    }

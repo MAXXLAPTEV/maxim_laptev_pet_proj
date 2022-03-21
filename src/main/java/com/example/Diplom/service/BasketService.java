@@ -1,14 +1,21 @@
 package com.example.Diplom.service;
 
+import com.example.Diplom.dto.request.AddBookToBasketRequest;
 import com.example.Diplom.dto.request.BasketRequest;
 import com.example.Diplom.dto.response.BasketResponse;
+import com.example.Diplom.dto.response.addbasket.BasketView;
 import com.example.Diplom.ent.Basket;
+import com.example.Diplom.ent.Book;
 import com.example.Diplom.ent.Customer;
 import com.example.Diplom.repo.BasketRepo;
+import com.example.Diplom.repo.BookRepo;
 import com.example.Diplom.repo.CustomerRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -18,43 +25,51 @@ public class BasketService {
     private final BasketRepo basketRepo;
     private final CustomerRepo customerRepo;
     private final ObjectMapper objectMapper;
+    private final BookRepo bookRepo;
 
 
-    private Basket findBasket(Customer customer) {
-        return basketRepo.findByCustomerId(customer.getId());
+    public BasketView findBasket(Long id) {
+        Optional<Basket> basket = basketRepo.findById(id);
+        System.out.println(basket.get());
+        return new BasketView(basket.get().getId(),basket.get().getBookList());
     }
 
-    private Customer findCustomer(BasketRequest basketRequest) {
+
+    public Customer findCustomer(BasketRequest basketRequest) {
         return customerRepo.getById(basketRequest.getCustomerId());
     }
 
-    private Basket findBook(BasketRequest basketRequest) {
-        return basketRepo.getById(basketRequest.getBookId());
-    }
+//    private Basket findBook(BasketRequest basketRequest) {
+//        return basketRepo.getById(basketRequest.getBookId());
+//    }
 
-    public BasketResponse deleteBasket(BasketRequest basketRequest){
-        Customer customer = findCustomer(basketRequest);
-        Basket basket = findBasket(customer);
-        basketRepo.delete(basket);
-        return null;
-    }
+//    public BasketResponse deleteBasket(BasketRequest basketRequest){
+//        Customer customer = findCustomer(basketRequest);
+//        Basket basket = findBasket(id);
+//        basketRepo.delete(basket);
+//        return null;
+//    }
 
-    private Basket CreateBasket(Customer customer) {
-            Basket basket = null;
+    public BasketView createBasket(Long id) {
+            System.out.println(id);
             Basket newBasket = new Basket();
-            newBasket.setCustomer(customer);
+            newBasket.setCustomer(customerRepo.getById(id));
             basketRepo.save(newBasket);
-            basket = newBasket;
-            return basket;
+            System.out.println(newBasket);
+            return new BasketView(newBasket.getId());
         }
 
-
-    public BasketResponse addBook(BasketRequest basketRequest) {
-        Customer customer = findCustomer(basketRequest);
-        Basket book = findBook(basketRequest);
-        Basket basket = CreateBasket(customer);
+    public BasketResponse addBook(AddBookToBasketRequest addBookToBasketRequest) {
+        Optional<Basket> basket = basketRepo.findById(addBookToBasketRequest.basketId);
+        List<Book> bookList = basket.get().getBookList();
+        Optional<Book> book = bookRepo.findById(addBookToBasketRequest.bookId);
+        bookList.add(book.get());
+        basket.get().setBookList(bookList);
+        basketRepo.save(basket.get());
         return objectMapper.convertValue(basket, BasketResponse.class);
     }
 
 
 }
+
+

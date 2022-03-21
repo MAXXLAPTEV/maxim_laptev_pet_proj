@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BasketRequest {
-    private Long customerId;
-    //private Long bookId;
-
+public class CheckoutRequest {
+    public Long orderId;
 }

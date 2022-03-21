@@ -19,5 +19,9 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "basket_id")
+    private Basket basket;
+
 }
 

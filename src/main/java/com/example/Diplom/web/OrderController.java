@@ -1,6 +1,8 @@
 package com.example.Diplom.web;
 
+import com.example.Diplom.dto.request.CheckoutRequest;
 import com.example.Diplom.dto.request.OrderRequest;
+import com.example.Diplom.dto.response.CheckoutResponse;
 import com.example.Diplom.dto.response.OrderResponse;
 import com.example.Diplom.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,11 @@ public class OrderController {
 
         return ResponseEntity.ok(orderResponse);
         }
+        @PostMapping("/checkout")
+        public ResponseEntity<CheckoutResponse> checkout(@RequestBody CheckoutRequest checkoutRequest){
+            CheckoutResponse checkoutResponse = orderService.checkout(checkoutRequest);
+            return ResponseEntity.ok(checkoutResponse);
 
+        }
 
 }

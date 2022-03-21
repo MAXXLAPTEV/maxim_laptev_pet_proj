@@ -1,4 +1,4 @@
-package com.example.Diplom.dto.request;
+package com.example.Diplom.dto.response.addbasket;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BasketRequest {
-    private Long customerId;
-    //private Long bookId;
-
+public class AddBasketResponse {
+    private BasketView basketView;
 }

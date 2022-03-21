@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -13,18 +15,18 @@ public class Basket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private Order order;
+//
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "order_id")
+//    private Order order;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
-    private Book book;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "basket_id")
+    private List<Book> bookList;
 
 }
 

@@ -32,6 +32,7 @@ public class BookService {
                 findByName(bookRequest.getBookAuthor().getAuthorName(), bookRequest.getBookAuthor().getAuthorSurname());
 
         if (!optionalBookAuthor.isPresent()) {
+            System.out.println(bookRequest.getBook());
             BookAuthor newAuthor = new BookAuthor(bookRequest.getBookAuthor());
             bookAuthorRepo.save(newAuthor);
             Book book = bookRepo.save(new Book(bookRequest.getBook(), newAuthor));
@@ -59,6 +60,7 @@ public class BookService {
         System.out.println(response);
         return response;
     }
+
 
 
     public List<BookResponse> getAllBooks(Pageable pageable) {
