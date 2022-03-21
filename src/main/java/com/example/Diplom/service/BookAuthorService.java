@@ -36,13 +36,5 @@ public class BookAuthorService {
         return objectMapper.convertValue(bookAuthor, BookAuthorResponse.class);
     }
 
-    public List<BookAuthorResponse> getAllAuthors(Pageable pageable){
-        List<BookAuthorResponse> bookAuthorResponses = new ArrayList<>();
-        for (BookAuthor bookAuthor : bookAuthorRepo.findAll(pageable)) {
-            bookAuthorResponses.add(objectMapper.convertValue(bookAuthor, BookAuthorResponse.class));
-        }
-        return bookAuthorResponses;
-    }
-
     public void deleteAuthor(Long  id){bookAuthorRepo.deleteById(id);}
 }

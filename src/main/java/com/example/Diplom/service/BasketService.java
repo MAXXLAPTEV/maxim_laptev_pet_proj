@@ -30,7 +30,6 @@ public class BasketService {
 
     public BasketView findBasket(Long id) {
         Optional<Basket> basket = basketRepo.findById(id);
-        System.out.println(basket.get());
         return new BasketView(basket.get().getId(),basket.get().getBookList());
     }
 
@@ -51,11 +50,9 @@ public class BasketService {
 //    }
 
     public BasketView createBasket(Long id) {
-            System.out.println(id);
             Basket newBasket = new Basket();
             newBasket.setCustomer(customerRepo.getById(id));
             basketRepo.save(newBasket);
-            System.out.println(newBasket);
             return new BasketView(newBasket.getId());
         }
 

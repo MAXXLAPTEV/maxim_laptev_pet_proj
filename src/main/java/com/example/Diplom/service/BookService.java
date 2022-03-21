@@ -13,11 +13,9 @@ import com.example.Diplom.web.handler.ServiceException;
 import com.example.Diplom.web.handler.TypicalError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,46 +27,28 @@ public class BookService {
 
     public AddBookResponse addBook(BookRequest bookRequest) {
         Optional<BookAuthor> optionalBookAuthor =
-                findByName(bookRequest.getBookAuthor().getAuthorName(), bookRequest.getBookAuthor().getAuthorSurname());
+                findBookAuthorByName(bookRequest.getBookAuthor().getAuthorName(), bookRequest.getBookAuthor().getAuthorSurname());
 
         if (!optionalBookAuthor.isPresent()) {
-            System.out.println(bookRequest.getBook());
             BookAuthor newAuthor = new BookAuthor(bookRequest.getBookAuthor());
             bookAuthorRepo.save(newAuthor);
             Book book = bookRepo.save(new Book(bookRequest.getBook(), newAuthor));
-            System.out.println("new author book" + book);
             return new AddBookResponse(new BookView(book.getId(), book.getBookName()), new BookAuthorView(book.getBookAuthor().getId(), true));
         } else {
             Book book = bookRepo.save(new Book(bookRequest.getBook(), optionalBookAuthor.get()));
-            System.out.println("existing author book" + book);
             return new AddBookResponse(new BookView(book.getId(), book.getBookName()), new BookAuthorView(book.getBookAuthor().getId(), false));
         }
-
-        // return objectMapper.convertValue(bookRequest, BookResponse.class);
     }
 
-    private Optional<BookAuthor> findByName(String authorName, String authorSurname) {
+    private Optional<BookAuthor> findBookAuthorByName(String authorName, String authorSurname) {
         return bookAuthorRepo.findByAuthorNameEqualsAndAuthorSurnameEquals(authorName, authorSurname);
     }
 
     public BookResponse findByBookId(Long id) {
-        // TODO: 17.03.2022 use this approach in places like this
         Book book = bookRepo.findById(id).orElseThrow(() ->
                 new ServiceException("No such book", TypicalError.NOT_FOUND));
-        System.out.println(book);
         BookResponse response = objectMapper.convertValue(book, BookResponse.class);
-        System.out.println(response);
         return response;
-    }
-
-
-
-    public List<BookResponse> getAllBooks(Pageable pageable) {
-        List<BookResponse> books = new ArrayList<>();
-        for (Book book : bookRepo.findAll(pageable)) {
-            books.add(objectMapper.convertValue(book, BookResponse.class));
-        }
-        return books;
     }
 
     public void deleteBookById(Long id) {

@@ -1,6 +1,10 @@
 package com.example.Diplom.dto.request.addbook;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class ApiBook {
     private String bookName;
 

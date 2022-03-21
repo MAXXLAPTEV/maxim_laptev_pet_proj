@@ -17,6 +17,5 @@ public class BookResponse {
     private Float cost;
     private int dateOfPrinting;
     private BookAuthor bookAuthor;
-    private Basket basket;
 
 }
