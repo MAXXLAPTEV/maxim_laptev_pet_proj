@@ -1,4 +1,4 @@
-package com.example.Diplom.services;
+package com.example.Diplom.service;
 
 
 import com.example.Diplom.dto.request.BookAuthorRequest;
@@ -8,13 +8,10 @@ import com.example.Diplom.dto.request.addbook.BookRequest;
 import com.example.Diplom.dto.response.BookAuthorResponse;
 import com.example.Diplom.dto.response.BookResponse;
 import com.example.Diplom.dto.response.addbook.AddBookResponse;
-import com.example.Diplom.ent.Basket;
 import com.example.Diplom.ent.Book;
 import com.example.Diplom.ent.BookAuthor;
 import com.example.Diplom.repo.BookAuthorRepo;
 import com.example.Diplom.repo.BookRepo;
-import com.example.Diplom.service.BookAuthorService;
-import com.example.Diplom.service.BookService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,25 +90,20 @@ public class BookServiceTest {
         Optional<BookAuthor> bookAuthor = bookAuthorRepo.findById(author.getId());
 
         assertEquals(false, bookAuthor.isPresent());
-        }
+    }
 
-      @Test
-          void shouldDeleteBookById(){
-          BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor( "radagon", "marika", 1000));
-          Book book = bookRepo.save(new Book("loyd", 123, 12.2F ,1222, bookAuthor));
+    @Test
+    void shouldDeleteBookById(){
+        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor( "radagon", "marika", 1000));
+        Book book = bookRepo.save(new Book("loyd", 123, 12.2F ,1222, bookAuthor));
         bookRepo.deleteById(book.getId());
         Optional<Book> book1 = bookRepo.findById(book.getId());
 
         assertEquals(false, book1.isPresent());
 
-      }
+    }
 
 
 }
-
-
-
-
-
 
 

@@ -32,13 +32,6 @@ public class CustomerService {
         return objectMapper.convertValue(customer, CustomerResponse.class);
     }
 
-    public List<CustomerResponse> getAllCustomers(Pageable pageable) {
-        List<CustomerResponse> customers = new ArrayList<>();
-        for(Customer customer : customerRepo.findAll(pageable).getContent()) {
-            customers.add(objectMapper.convertValue(customer, CustomerResponse.class));
-        }
-        return customers;
-    }
     public void deleteCustomerById(Long id) {
         customerRepo.deleteById(id);
     }

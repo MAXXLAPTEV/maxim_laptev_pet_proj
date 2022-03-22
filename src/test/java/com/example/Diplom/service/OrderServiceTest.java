@@ -1,27 +1,20 @@
-package com.example.Diplom.services;
+package com.example.Diplom.service;
 
 
-import com.example.Diplom.dto.request.AddBookToBasketRequest;
+
 import com.example.Diplom.dto.request.CheckoutRequest;
 import com.example.Diplom.dto.request.OrderRequest;
-import com.example.Diplom.dto.response.BasketResponse;
+
 import com.example.Diplom.dto.response.CheckoutResponse;
 import com.example.Diplom.dto.response.OrderResponse;
 import com.example.Diplom.ent.*;
 import com.example.Diplom.repo.*;
-import com.example.Diplom.service.BasketService;
-import com.example.Diplom.service.OrderService;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -48,11 +41,6 @@ public class OrderServiceTest {
     @Autowired
     BasketService basketService;
 
-/*    @AfterEach
-    void resetDB(){
-        orderRepo.deleteAll();
-        customerRepo.deleteAll();
-    }*/
 
     @Test
     void shouldAddOrder(){
@@ -97,8 +85,7 @@ public class OrderServiceTest {
 
     }
 
-    }
-
+}
 
 
 

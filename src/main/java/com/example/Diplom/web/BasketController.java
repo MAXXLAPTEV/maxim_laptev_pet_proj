@@ -39,11 +39,5 @@ public class BasketController {
 
         return ResponseEntity.ok(basketResponse);
     }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<String> deleteBasket(@RequestBody BasketRequest basketRequest) {
-//        basketService.deleteBasket(basketRequest);
-//
-//        return ResponseEntity.ok("Basket deleted");
-//    }
+
 }

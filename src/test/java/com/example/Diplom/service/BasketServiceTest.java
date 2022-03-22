@@ -1,4 +1,4 @@
-package com.example.Diplom.services;
+package com.example.Diplom.service;
 
 import com.example.Diplom.dto.request.AddBookToBasketRequest;
 import com.example.Diplom.dto.request.BasketRequest;
@@ -16,15 +16,12 @@ import com.example.Diplom.repo.BasketRepo;
 import com.example.Diplom.repo.BookAuthorRepo;
 import com.example.Diplom.repo.BookRepo;
 import com.example.Diplom.repo.CustomerRepo;
-import com.example.Diplom.service.BasketService;
-import com.example.Diplom.service.BookService;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Collections;
-import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
