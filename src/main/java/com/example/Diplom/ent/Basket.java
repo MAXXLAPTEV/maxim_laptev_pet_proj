@@ -15,19 +15,19 @@ public class Basket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-//
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "order_id")
-//    private Order order;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "basket_id")
     private List<Book> bookList;
 
+    public Basket(Customer customer, List<Book> bookList) {
+        this.customer = customer;
+        this.bookList = bookList;
+    }
 }
 
 

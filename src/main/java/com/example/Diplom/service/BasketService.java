@@ -33,22 +33,6 @@ public class BasketService {
         return new BasketView(basket.get().getId(),basket.get().getBookList());
     }
 
-
-    public Customer findCustomer(BasketRequest basketRequest) {
-        return customerRepo.getById(basketRequest.getCustomerId());
-    }
-
-//    private Basket findBook(BasketRequest basketRequest) {
-//        return basketRepo.getById(basketRequest.getBookId());
-//    }
-
-//    public BasketResponse deleteBasket(BasketRequest basketRequest){
-//        Customer customer = findCustomer(basketRequest);
-//        Basket basket = findBasket(id);
-//        basketRepo.delete(basket);
-//        return null;
-//    }
-
     public BasketView createBasket(Long id) {
             Basket newBasket = new Basket();
             newBasket.setCustomer(customerRepo.getById(id));

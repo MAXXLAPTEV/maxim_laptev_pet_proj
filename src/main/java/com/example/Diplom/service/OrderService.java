@@ -14,6 +14,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.DoubleStream;
@@ -45,7 +48,8 @@ public class OrderService {
         Basket basket = order.get().getBasket();
         List<Book> books = basket.getBookList();
         Double sum = books.stream().mapToDouble(Book::getCost).sum();
+        BigDecimal decimal = new BigDecimal(sum).setScale(2, RoundingMode.HALF_UP);
 
-        return new CheckoutResponse(sum);
+        return new CheckoutResponse(decimal.doubleValue());
     }
 }

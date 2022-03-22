@@ -23,5 +23,9 @@ public class Order {
     @JoinColumn(name = "basket_id")
     private Basket basket;
 
+    public Order(Customer customer, Basket basket) {
+        this.customer = customer;
+        this.basket = basket;
+    }
 }
 
