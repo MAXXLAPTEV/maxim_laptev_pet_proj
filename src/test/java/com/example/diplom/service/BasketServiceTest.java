@@ -42,7 +42,7 @@ public class BasketServiceTest {
     BookAuthorRepo bookAuthorRepo;
 
     @Test
-    void shouldCreateBasket(){
+    void shouldCreateBasket() {
         Customer customer = customerRepo.save(new Customer("max", "laptev", "laptev@mail.com"));
         BasketRequest basket = new BasketRequest(customer.getId());
 
@@ -50,11 +50,11 @@ public class BasketServiceTest {
     }
 
     @Test
-    void shouldAddBookToTheBasket(){
+    void shouldAddBookToTheBasket() {
         Customer customer = customerRepo.save(new Customer("max", "laptev", "laptev@mail.com"));
 
-        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor( "radagon", "marika", 1000));
-        Book book = bookRepo.save(new Book("loyd", 123, 12.2F ,1222,
+        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor("radagon", "marika", 1000));
+        Book book = bookRepo.save(new Book("loyd", 123, 12.2F, 1222,
                 bookAuthor));
 
         Basket basket = basketRepo.save(new Basket(customer, Collections.emptyList()));
@@ -63,6 +63,6 @@ public class BasketServiceTest {
 
         Basket actualBasket = basketRepo.findById(basketResponse.getId()).get();
 
-        assertEquals("loyd",actualBasket.getBookList().get(0).getBookName());
+        assertEquals("loyd", actualBasket.getBookList().get(0).getBookName());
     }
 }

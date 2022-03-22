@@ -18,18 +18,20 @@ public class BookAuthorService {
     private final BookAuthorRepo bookAuthorRepo;
     private final ObjectMapper objectMapper;
 
-    public BookAuthorResponse addBookAuthor(BookAuthorRequest bookAuthorRequest){
+    public BookAuthorResponse addBookAuthor(BookAuthorRequest bookAuthorRequest) {
         BookAuthor bookAuthor = objectMapper.convertValue(bookAuthorRequest, BookAuthor.class);
         bookAuthorRepo.save(bookAuthor);
         return objectMapper.convertValue(bookAuthor, BookAuthorResponse.class);
 
     }
 
-    public BookAuthorResponse findBookAuthorById(long id){
+    public BookAuthorResponse findBookAuthorById(long id) {
         BookAuthor bookAuthor = bookAuthorRepo.findById(id).orElseThrow(() ->
                 new ServiceException("no such author", TypicalError.NOT_FOUND));
         return objectMapper.convertValue(bookAuthor, BookAuthorResponse.class);
     }
 
-    public void deleteAuthor(Long  id){bookAuthorRepo.deleteById(id);}
+    public void deleteAuthor(Long id) {
+        bookAuthorRepo.deleteById(id);
+    }
 }

@@ -28,15 +28,15 @@ public class BasketService {
 
     public BasketView findBasket(Long id) {
         Optional<Basket> basket = basketRepo.findById(id);
-        return new BasketView(basket.get().getId(),basket.get().getBookList());
+        return new BasketView(basket.get().getId(), basket.get().getBookList());
     }
 
     public BasketView createBasket(Long id) {
-            Basket newBasket = new Basket();
-            newBasket.setCustomer(customerRepo.getById(id));
-            basketRepo.save(newBasket);
-            return new BasketView(newBasket.getId());
-        }
+        Basket newBasket = new Basket();
+        newBasket.setCustomer(customerRepo.getById(id));
+        basketRepo.save(newBasket);
+        return new BasketView(newBasket.getId());
+    }
 
     public BasketResponse addBook(AddBookToBasketRequest addBookToBasketRequest) {
         Optional<Basket> basket = basketRepo.findById(addBookToBasketRequest.basketId);

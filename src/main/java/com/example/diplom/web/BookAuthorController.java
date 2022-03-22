@@ -15,21 +15,21 @@ public class BookAuthorController {
     private final BookAuthorService bookAuthorService;
 
     @PostMapping("/add")
-    public ResponseEntity<BookAuthorResponse> addAuthor(@RequestBody BookAuthorRequest bookAuthorRequest){
+    public ResponseEntity<BookAuthorResponse> addAuthor(@RequestBody BookAuthorRequest bookAuthorRequest) {
         BookAuthorResponse bookAuthorResponse = bookAuthorService.addBookAuthor(bookAuthorRequest);
 
         return ResponseEntity.ok(bookAuthorResponse);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookAuthorResponse> findAuthorById(@PathVariable Long id){
+    public ResponseEntity<BookAuthorResponse> findAuthorById(@PathVariable Long id) {
         BookAuthorResponse bookAuthorResponse = bookAuthorService.findBookAuthorById(id);
 
         return ResponseEntity.ok(bookAuthorResponse);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteAuthorById(@PathVariable Long id){
+    public ResponseEntity<String> deleteAuthorById(@PathVariable Long id) {
         bookAuthorService.deleteAuthor(id);
 
         return ResponseEntity.ok("author deleted");

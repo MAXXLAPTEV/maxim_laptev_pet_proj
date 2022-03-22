@@ -16,17 +16,18 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     private final OrderService orderService;
 
-        @PostMapping("/addOrder")
-        public ResponseEntity<OrderResponse> addOrder(@RequestBody OrderRequest orderRequest){
-            OrderResponse orderResponse = orderService.addOrder(orderRequest);
+    @PostMapping("/addOrder")
+    public ResponseEntity<OrderResponse> addOrder(@RequestBody OrderRequest orderRequest) {
+        OrderResponse orderResponse = orderService.addOrder(orderRequest);
 
         return ResponseEntity.ok(orderResponse);
-        }
-        @PostMapping("/checkout")
-        public ResponseEntity<CheckoutResponse> checkout(@RequestBody CheckoutRequest checkoutRequest){
-            CheckoutResponse checkoutResponse = orderService.checkout(checkoutRequest);
-            return ResponseEntity.ok(checkoutResponse);
+    }
 
-        }
+    @PostMapping("/checkout")
+    public ResponseEntity<CheckoutResponse> checkout(@RequestBody CheckoutRequest checkoutRequest) {
+        CheckoutResponse checkoutResponse = orderService.checkout(checkoutRequest);
+        return ResponseEntity.ok(checkoutResponse);
+
+    }
 
 }

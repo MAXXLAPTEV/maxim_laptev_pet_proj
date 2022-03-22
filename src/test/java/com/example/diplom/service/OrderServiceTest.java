@@ -1,7 +1,6 @@
 package com.example.diplom.service;
 
 
-
 import com.example.diplom.dto.request.CheckoutRequest;
 import com.example.diplom.dto.request.OrderRequest;
 
@@ -12,9 +11,11 @@ import com.example.diplom.repo.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -43,11 +44,11 @@ public class OrderServiceTest {
 
 
     @Test
-    void shouldAddOrder(){
+    void shouldAddOrder() {
         Customer customer = customerRepo.save(new Customer("max", "laptev", "laptev@mail.com"));
 
-        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor( "radagon", "marika", 1000));
-        Book book = bookRepo.save(new Book("loyd", 123, 12.2F ,1222,
+        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor("radagon", "marika", 1000));
+        Book book = bookRepo.save(new Book("loyd", 123, 12.2F, 1222,
                 bookAuthor));
 
         List<Book> books = new ArrayList<>();
@@ -63,13 +64,13 @@ public class OrderServiceTest {
     }
 
     @Test
-    void shouldCheckout(){
+    void shouldCheckout() {
         Customer customer = customerRepo.save(new Customer("max", "laptev", "laptev@mail.com"));
 
-        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor( "radagon", "marika", 1000));
-        Book book = bookRepo.save(new Book("loyd", 123, 12.2F ,1222,
+        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor("radagon", "marika", 1000));
+        Book book = bookRepo.save(new Book("loyd", 123, 12.2F, 1222,
                 bookAuthor));
-        Book book1 = bookRepo.save(new Book("pink",234,23.3F,1333,bookAuthor));
+        Book book1 = bookRepo.save(new Book("pink", 234, 23.3F, 1333, bookAuthor));
 
         List<Book> books = new ArrayList<>();
         books.add(book);

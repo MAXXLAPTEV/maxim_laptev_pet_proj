@@ -16,21 +16,21 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping("/add")
-    public ResponseEntity<AddBookResponse> addBook(@RequestBody BookRequest bookRequest){
+    public ResponseEntity<AddBookResponse> addBook(@RequestBody BookRequest bookRequest) {
         AddBookResponse bookResponse = bookService.addBook(bookRequest);
 
         return ResponseEntity.ok(bookResponse);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BookResponse> findByBookId(@PathVariable Long id){
+    public ResponseEntity<BookResponse> findByBookId(@PathVariable Long id) {
         BookResponse bookResponse = bookService.findByBookId(id);
 
         return ResponseEntity.ok(bookResponse);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteBookById(@PathVariable Long id){
+    public ResponseEntity<String> deleteBookById(@PathVariable Long id) {
         bookService.deleteBookById(id);
 
         return ResponseEntity.ok("book deleted");

@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping ("/customer")
+@RequestMapping("/customer")
 @RequiredArgsConstructor
 
 public class CustomerController {
@@ -16,21 +16,21 @@ public class CustomerController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<CustomerResponse> addCustomer(@RequestBody CustomerRequest customerRequest){
+    public ResponseEntity<CustomerResponse> addCustomer(@RequestBody CustomerRequest customerRequest) {
         CustomerResponse customerResponse = customerService.addCustomer(customerRequest);
 
         return ResponseEntity.ok(customerResponse);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerResponse> findCustomerById(@PathVariable Long id){
+    public ResponseEntity<CustomerResponse> findCustomerById(@PathVariable Long id) {
         CustomerResponse customerResponse = customerService.findByCustomerId(id);
 
         return ResponseEntity.ok(customerResponse);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCustomerById(@PathVariable Long id){
+    public ResponseEntity<String> deleteCustomerById(@PathVariable Long id) {
         customerService.deleteCustomerById(id);
 
         return ResponseEntity.ok("deleted");

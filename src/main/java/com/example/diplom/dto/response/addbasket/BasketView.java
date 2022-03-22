@@ -17,7 +17,5 @@ public class BasketView {
         this.books = books.stream().map(book -> new BookView(book.getId(), book.getBookName())).collect(Collectors.toList());
     }
 
-    public BasketView(Long id) {
-
-    }
+    public BasketView(Long id) {}
 }

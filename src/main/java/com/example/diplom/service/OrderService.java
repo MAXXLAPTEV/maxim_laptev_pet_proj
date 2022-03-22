@@ -31,13 +31,13 @@ public class OrderService {
         return basketRepo.findByCustomerId(orderRequest.getCustomerId());
     }
 
-    public OrderResponse addOrder(OrderRequest orderRequest){
+    public OrderResponse addOrder(OrderRequest orderRequest) {
         Basket basket = findBasket(orderRequest);
         Order order = new Order();
         order.setCustomer(basket.getCustomer());
         order.setBasket(basket);
         orderRepo.save(order);
-        return objectMapper.convertValue(order,OrderResponse.class);
+        return objectMapper.convertValue(order, OrderResponse.class);
     }
 
     public CheckoutResponse checkout(CheckoutRequest checkoutRequest) {

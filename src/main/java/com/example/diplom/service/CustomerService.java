@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
-        public final CustomerRepo customerRepo;
-        public final ObjectMapper objectMapper;
+    public final CustomerRepo customerRepo;
+    public final ObjectMapper objectMapper;
 
     public CustomerResponse addCustomer(CustomerRequest customerRequest) {
         Customer customer = objectMapper.convertValue(customerRequest, Customer.class);

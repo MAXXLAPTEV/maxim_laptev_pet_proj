@@ -16,6 +16,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -55,8 +56,8 @@ public class BookServiceTest {
     }
 
     @Test
-    void shouldFindAuthorByNameAndSurname(){
-        BookAuthorRequest request = new BookAuthorRequest("maxim","kkorol",1889);
+    void shouldFindAuthorByNameAndSurname() {
+        BookAuthorRequest request = new BookAuthorRequest("maxim", "kkorol", 1889);
         BookAuthorResponse response = bookAuthorService.addBookAuthor(request);
         BookAuthor author = bookAuthorRepo.findByAuthorNameEqualsAndAuthorSurnameEquals(response.getAuthorName(),
                 response.getAuthorSurname()).get();
@@ -66,9 +67,9 @@ public class BookServiceTest {
     }
 
     @Test
-    void shouldFindBookById(){
-        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor( "radagon", "marika", 1000));
-        Book book = bookRepo.save(new Book("loyd", 123, 12.2F ,1222,
+    void shouldFindBookById() {
+        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor("radagon", "marika", 1000));
+        Book book = bookRepo.save(new Book("loyd", 123, 12.2F, 1222,
                 bookAuthor));
 
         BookResponse bookId = bookService.findByBookId(book.getId());
@@ -84,8 +85,8 @@ public class BookServiceTest {
     }
 
     @Test
-    void shouldDeleteAuthorById(){
-        BookAuthor author = bookAuthorRepo.save(new BookAuthor( "radagon", "marika", 1000));
+    void shouldDeleteAuthorById() {
+        BookAuthor author = bookAuthorRepo.save(new BookAuthor("radagon", "marika", 1000));
         bookAuthorService.deleteAuthor(author.getId());
         Optional<BookAuthor> bookAuthor = bookAuthorRepo.findById(author.getId());
 
@@ -93,9 +94,9 @@ public class BookServiceTest {
     }
 
     @Test
-    void shouldDeleteBookById(){
-        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor( "radagon", "marika", 1000));
-        Book book = bookRepo.save(new Book("loyd", 123, 12.2F ,1222, bookAuthor));
+    void shouldDeleteBookById() {
+        BookAuthor bookAuthor = bookAuthorRepo.save(new BookAuthor("radagon", "marika", 1000));
+        Book book = bookRepo.save(new Book("loyd", 123, 12.2F, 1222, bookAuthor));
         bookRepo.deleteById(book.getId());
         Optional<Book> book1 = bookRepo.findById(book.getId());
 
