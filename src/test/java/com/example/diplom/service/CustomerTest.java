@@ -46,4 +46,14 @@ public class CustomerTest {
 
     }
 
+    @Test
+    void shouldAddCustomer(){
+        Customer customer = customerRepo.save(new Customer("max", "laptev", "maxlaptev@gmail.com"));
+
+        Optional<Customer> byId = customerRepo.findById(customer.getId());
+
+        assertEquals(true, byId.isPresent());
+
+    }
+
 }
