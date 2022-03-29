@@ -8,11 +8,10 @@ import com.example.diplom.ent.Book;
 import com.example.diplom.repo.BasketRepo;
 import com.example.diplom.repo.BookRepo;
 import com.example.diplom.repo.CustomerRepo;
-import com.example.diplom.web.handler.ServiceException;
-import com.example.diplom.web.handler.TypicalError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +19,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BasketService {
 
     private final BasketRepo basketRepo;
